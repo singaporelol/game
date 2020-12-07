@@ -12,8 +12,9 @@ export default class App extends Component {
     };
   }
   componentDidMount() {
-    this.state.playerList.push(this.state.player1);
-    this.state.playerList.push(this.state.player2);
+    this.setState({
+      playerList: [this.state.player1, this.state.player2],
+    });
   }
   playHandler(rowIndex, colIndex) {
     let { playerList } = this.state;
@@ -31,6 +32,7 @@ export default class App extends Component {
         if (winner) {
           this.setState({
             winner,
+            playground: new Array(3).fill("").map((u) => new Array(3).fill(""))
           });
         }
       }
@@ -39,7 +41,7 @@ export default class App extends Component {
 
   judgeWinner(tempPlayground) {
     //first row winner
-    
+
     console.log(tempPlayground);
     if (
       tempPlayground[0][0] === tempPlayground[0][1] &&
